@@ -45,11 +45,14 @@ class _MyAppState extends State<MyApp> {
             fit: BoxFit.cover,
           ),
           Positioned(
-            top: -162,
+            top: 0,
             right: 10,
             left: 10,
             child: Image.asset(
               'assets/images/st_banner_alert_announcement_blue_offer.png',
+              width: double.infinity,
+              height: 50,
+              fit: BoxFit.cover,
             ),
           ),
           const Positioned(
@@ -205,11 +208,14 @@ class _MyAppState extends State<MyApp> {
             left: 0,
             right: 0,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 6.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6.0),
               child: ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(Colors.blueAccent.shade400),
-                  minimumSize: MaterialStateProperty.all<Size>(const Size(200, 60)),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Colors.blueAccent.shade400),
+                  minimumSize:
+                      MaterialStateProperty.all<Size>(const Size(200, 60)),
                 ),
                 onPressed: () {
                   Fluttertoast.showToast(
