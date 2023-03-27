@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+// @dart=2.9
 void main() {
   runApp(MaterialApp(
     home: MyApp(),
@@ -30,6 +32,20 @@ final List<MyItem> items = [
 ];
 
 class _MyAppState extends State<MyApp> {
+  var channel = MethodChannel("peeyu");
+  var text = "Flutter Text";
+
+  setText(str) {
+    setState(() {
+      text = str;
+    });
+  }
+
+  changeText() async {
+    var response = await channel.invokeMethod('changetext');
+    setText(response);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -218,6 +234,7 @@ class _MyAppState extends State<MyApp> {
                       MaterialStateProperty.all<Size>(const Size(200, 60)),
                 ),
                 onPressed: () {
+                  changeText();
                   Fluttertoast.showToast(
                     msg: "Credit Application In Process",
                     toastLength: Toast.LENGTH_SHORT,
@@ -226,7 +243,7 @@ class _MyAppState extends State<MyApp> {
                   );
                 },
                 child: Text(
-                  'Apply For Credit',
+                  text,
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.white,
